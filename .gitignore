@@ -1,0 +1,38 @@
+# Flutter project files
+.dart_tool/
+.packages
+build/
+.idea/
+.vscode/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio generated files
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# macOS related
+macos/Flutter/ephemeral/
+
+# VS Code specific
+.vscode/
+
