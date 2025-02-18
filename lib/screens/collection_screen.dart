@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+class CollectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "🏠 Dashboard",
+        "🏠 Collection",
         style: TextStyle(fontSize: 24, color: Colors.white),
       ),
     );

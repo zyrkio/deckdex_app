@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "🏠 Dashboard",
+        "🏠 set",
         style: TextStyle(fontSize: 24, color: Colors.white),
       ),
     );

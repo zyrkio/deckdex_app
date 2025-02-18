@@ -25,7 +25,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/fonts/
+    - assets/font/
+    - assets/images/
   fonts:
     - family: SwissDesign
       fonts:
