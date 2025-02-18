@@ -7,14 +7,18 @@ import 'screens/dashboard_screen.dart';
 import 'screens/scan_screen.dart';
 import 'screens/collection_screen.dart';
 import 'screens/settings_screen.dart';
+import 'providers/card_provider.dart';
 import 'dart:async';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => NavigationProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NavigationProvider()),
+        ChangeNotifierProvider(create: (context) => CardProvider()), // ✅ NEU
+      ],
       child: const MyApp(),
     ),
   );
