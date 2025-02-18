@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart'; // ✅ Fenstergröße kontrollieren
 import 'providers/navigation_provider.dart';
 import 'widgets/sidebar.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/scan_screen.dart';
 import 'screens/collection_screen.dart';
 import 'screens/settings_screen.dart';
-import 'dart:async'; // Für `Future`
+import 'dart:async';
 
 Future<void> main() async {
-  // Stellt sicher, dass alle Flutter-Widgets und Plugins initialisiert sind
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Falls nötig: Lade API-Daten, Datenbank oder andere Services vor App-Start
-  await Future.delayed(Duration(seconds: 2)); // Simulierte Initialisierung
-
-  // Startet die App nach der Initialisierung
   runApp(
     ChangeNotifierProvider(
       create: (context) => NavigationProvider(),
       child: const MyApp(),
     ),
   );
-}
 
+  // 🟢 Hier die Fenstergröße auf 1024x600 fixieren
+  doWhenWindowReady(() {
+    final win = appWindow;
+    win.minSize = Size(1024, 600);
+    win.maxSize = Size(1024, 600);
+    win.size = Size(1024, 600);
+    win.alignment = Alignment.center;
+    win.show();
+  });
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -33,7 +38,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'DeckDex App',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFe5e7de), // ✅ Hintergrundfarbe der gesamten App
+        scaffoldBackgroundColor: Color(0xFFfbfbfb), // ✅ Hintergrundfarbe der gesamten App
       ), // 🎨 Dunkles Design für Ubuntu
       home: MainPage(),
     );
@@ -62,9 +67,23 @@ class MainPage extends StatelessWidget {
 
     return Scaffold(
       body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start, // Damit beide oben ausgerichtet sind
         children: [
-          Sidebar(), // 🟢 Sidebar bleibt immer sichtbar
-          Expanded(child: screen),
+          Sidebar(), // Sidebar bleibt fix
+
+         
+
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.all(10), // 👉 Außenabstand für den Content-Bereich
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 255, 255, 255), // Hintergrundfarbe des Hauptinhalts
+                borderRadius: BorderRadius.circular(12), // Abgerundete Ecken
+                
+              ),
+              child: screen, // Zeigt die aktuelle Seite (Dashboard, Scan, etc.)
+            ),
+          ),
         ],
       ),
     );
